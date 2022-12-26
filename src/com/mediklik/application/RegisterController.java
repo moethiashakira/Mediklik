@@ -1,5 +1,9 @@
 package com.mediklik.application;
 
+import java.sql.PreparedStatement;
+
+import com.mediklik.db.Connect;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
@@ -14,6 +18,7 @@ public class RegisterController {
 	private PasswordField passwordPField;
 
 	public void handleRegister() {
-		System.out.println("test");
+		Connect userConnect = Connect.getConnection();
+		PreparedStatement usernamePStatement = userConnect.prepare("insert into user values(?, ?, ?, ?)");
 	}
 }
