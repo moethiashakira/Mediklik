@@ -5,7 +5,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class User {
-	private String userID;
+	private int userID;
 	private String userName;
 	private String password;
 	private boolean isadmin;
@@ -16,19 +16,18 @@ public class User {
 		// TODO Auto-generated constructor stub
 	}
 
-	public User(String userID, String userName, String password, boolean isadmin, int balance, ArrayList<ItemQuantity> cart) {
+	public User(int userID, String userName, String password, boolean isadmin, int balance) {
 		super();
 		this.userID = userID;
 		this.userName = userName;
 		this.password = password;
 		this.isadmin = isadmin;
 		this.balance = balance;
-		this.cart = cart;
 	}
 	
 	public User(ResultSet userRow) {
 		try {
-			this.userID = userRow.getString("UserID");
+			this.userID = userRow.getInt("UserID");
 			this.userName = userRow.getString("UserName");
 			this.password = userRow.getString("Password");
 			this.isadmin = userRow.getBoolean("IsAdmin");
@@ -39,11 +38,11 @@ public class User {
 		}
 	}
 
-	public String getUserID() {
+	public int getUserID() {
 		return userID;
 	}
 
-	public void setUserID(String userID) {
+	public void setUserID(int userID) {
 		this.userID = userID;
 	}
 

@@ -1,7 +1,7 @@
 package com.mediklik.models;
 
 public class Item {
-	private String ItemID;
+	private int ItemID;
 	private String ItemName;
 	private int ItemPrice;
 	private String CategoryID;
@@ -11,7 +11,7 @@ public class Item {
 		
 	}
 	
-	public Item(String itemID, String itemName, int itemPrice, String categoryID, double itemRating) {
+	public Item(int itemID, String itemName, int itemPrice, String categoryID, double itemRating) {
 		super();
 		ItemID = itemID;
 		ItemName = itemName;
@@ -20,11 +20,11 @@ public class Item {
 		ItemRating = itemRating;
 	}
 	
-	public String getItemID() {
+	public int getItemID() {
 		return ItemID;
 	}
 	
-	public void setItemID(String itemID) {
+	public void setItemID(int itemID) {
 		ItemID = itemID;
 	}
 	

@@ -1,12 +1,15 @@
 package com.mediklik.application;
 
+import java.net.URL;
 import java.sql.*;
+import java.util.ResourceBundle;
 
 import com.mediklik.db.Connect;
 import com.mediklik.models.User;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -16,7 +19,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-public class StartController {
+public class StartController implements Initializable {
 	@FXML
 	private Button loginButton;
 	@FXML
@@ -71,5 +74,11 @@ public class StartController {
 		catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	@Override
+	public void initialize(URL arg0, ResourceBundle arg1) {
+		// TODO Auto-generated method stub
+		
 	}
 }

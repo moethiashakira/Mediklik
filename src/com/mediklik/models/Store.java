@@ -3,7 +3,7 @@ package com.mediklik.models;
 import java.util.ArrayList;
 
 public class Store {
-	private String storeID;
+	private int storeID;
 	private String storeName;
 	private double storeRating;
 	private ArrayList<ItemQuantity> inventory = new ArrayList<ItemQuantity>();
@@ -12,7 +12,7 @@ public class Store {
 
 	}
 
-	public Store(String storeID, String storeName, double storeRating, ArrayList<ItemQuantity> inventory) {
+	public Store(int storeID, String storeName, double storeRating, ArrayList<ItemQuantity> inventory) {
 		super();
 		this.storeID = storeID;
 		this.storeName = storeName;
@@ -20,11 +20,11 @@ public class Store {
 		this.inventory = inventory;
 	}
 
-	public String getStoreID() {
+	public int getStoreID() {
 		return storeID;
 	}
 
-	public void setStoreID(String storeID) {
+	public void setStoreID(int storeID) {
 		this.storeID = storeID;
 	}
 
