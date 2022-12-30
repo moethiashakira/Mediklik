@@ -1,62 +1,84 @@
 package com.mediklik.models;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 public class Item {
-	private int ItemID;
-	private String ItemName;
-	private int ItemPrice;
-	private String CategoryID;
-	private double ItemRating;
-	
-	public Item() {
+	private int itemID;
+	private String itemName;
+	private int itemPrice;
+	private int categoryID;
+	private double itemRating;
+	private String itemImage;
 		
+	public Item(int itemID, String itemName, int itemPrice, int categoryID, double itemRating, String itemImage) {
+		this.itemID = itemID;
+		this.itemName = itemName;
+		this.itemPrice = itemPrice;
+		this.categoryID = categoryID;
+		this.itemRating = itemRating;
+		this.itemImage = "file:/media/" + itemImage;
 	}
 	
-	public Item(int itemID, String itemName, int itemPrice, String categoryID, double itemRating) {
-		super();
-		ItemID = itemID;
-		ItemName = itemName;
-		ItemPrice = itemPrice;
-		CategoryID = categoryID;
-		ItemRating = itemRating;
+	public Item(ResultSet itemRow) {
+		try {
+			this.itemID = itemRow.getInt("ItemID");
+			this.itemName = itemRow.getString("ItemName");
+			this.itemPrice = itemRow.getInt("ItemPrice");
+			this.categoryID = itemRow.getInt("CategoryID");
+			this.itemRating = itemRow.getDouble("ItemRating");
+			this.itemImage = "file:/media/" + itemRow.getString("ItemImage");
+		}
+		catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public int getItemID() {
-		return ItemID;
+		return itemID;
 	}
 	
 	public void setItemID(int itemID) {
-		ItemID = itemID;
+		this.itemID = itemID;
 	}
 	
 	public String getItemName() {
-		return ItemName;
+		return itemName;
 	}
 	
 	public void setItemName(String itemName) {
-		ItemName = itemName;
+		this.itemName = itemName;
 	}
 	
 	public int getItemPrice() {
-		return ItemPrice;
+		return itemPrice;
 	}
 	
 	public void setItemPrice(int itemPrice) {
-		ItemPrice = itemPrice;
+		this.itemPrice = itemPrice;
 	}
 	
-	public String getCategoryID() {
-		return CategoryID;
+	public int getCategoryID() {
+		return categoryID;
 	}
 	
-	public void setCategoryID(String categoryID) {
-		CategoryID = categoryID;
+	public void setCategoryID(int categoryID) {
+		this.categoryID = categoryID;
 	}
 
 	public double getItemRating() {
-		return ItemRating;
+		return itemRating;
 	}
 	
 	public void setItemRating(double itemRating) {
-		ItemRating = itemRating;
+		this.itemRating = itemRating;
+	}
+
+	public String getItemImage() {
+		return itemImage;
+	}
+
+	public void setItemImage(String itemImage) {
+		this.itemImage = itemImage;
 	}
 }
