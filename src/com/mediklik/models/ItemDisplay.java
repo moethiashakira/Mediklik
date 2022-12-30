@@ -11,7 +11,6 @@ import javafx.scene.layout.VBox;
 
 public class ItemDisplay {
 	private VBox vbox;
-	private FileInputStream imageFIS;
 	private Image image;
 	private ImageView imageView;
 	private Label nameLabel;
