@@ -17,7 +17,7 @@ public class Item {
 		this.itemPrice = itemPrice;
 		this.categoryID = categoryID;
 		this.itemRating = itemRating;
-		this.itemImage = "file:/media/" + itemImage;
+		this.itemImage = "/media/" + itemImage;
 	}
 	
 	public Item(ResultSet itemRow) {
@@ -27,7 +27,7 @@ public class Item {
 			this.itemPrice = itemRow.getInt("ItemPrice");
 			this.categoryID = itemRow.getInt("CategoryID");
 			this.itemRating = itemRow.getDouble("ItemRating");
-			this.itemImage = "file:/media/" + itemRow.getString("ItemImage");
+			this.itemImage = "/media/" + itemRow.getString("ItemImage");
 		}
 		catch (SQLException e) {
 			e.printStackTrace();

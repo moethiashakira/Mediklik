@@ -54,7 +54,7 @@
                      <children>
                         <ImageView fitHeight="343.0" fitWidth="326.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../../../media/logo_bg_trans.png" />
+                              <Image url="@../../../media/logo_bg_trans.png" />
                            </image>
                         </ImageView>
                      </children>
