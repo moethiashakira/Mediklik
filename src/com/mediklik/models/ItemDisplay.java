@@ -1,8 +1,6 @@
 package com.mediklik.models;
 
-import java.io.FileInputStream;
-import java.io.IOException;
-
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -20,16 +18,17 @@ public class ItemDisplay {
 		vbox = new VBox();
 		image = new Image(item.getItemImage());
 		imageView = new ImageView(image);
-		System.out.println(image.getWidth());
 		imageView.setSmooth(true);
 		imageView.setPreserveRatio(true);
-		imageView.setFitWidth(100);
+		imageView.setFitWidth(150);
 		nameLabel = new Label(item.getItemName());
 		priceLabel = new Label("Rp" + item.getItemPrice());
 		vbox.setAlignment(Pos.CENTER);
 		vbox.getChildren().add(imageView);
 		vbox.getChildren().add(priceLabel);
 		vbox.getChildren().add(nameLabel);
+		VBox.setMargin(nameLabel, new Insets(5, 0, 0, 0));
+		VBox.setMargin(priceLabel, new Insets(5, 0, 0, 0));
 	}
 
 	public VBox getVbox() {
