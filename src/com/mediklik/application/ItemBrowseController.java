@@ -27,15 +27,13 @@ public class ItemBrowseController implements Initializable {
 	@FXML
 	private GridPane itemGridPane;
 	@FXML
-	private Button keranjangButton;
+	private Button cartButton;
 	@FXML
 	private Button topUpButton;
 	
-	private ArrayList<Item> itemList;
-	private ArrayList<ItemDisplay> itemDisplayList;
-	private Image keranjangButtonImage;
+	private Image cartButtonImage;
 	private Image topUpButtonImage;
-	private ImageView keranjangButtonIV;
+	private ImageView cartButtonIV;
 	private ImageView topUpButtonIV;
 
 	@Override
@@ -43,13 +41,13 @@ public class ItemBrowseController implements Initializable {
 		SessionController itemBrowseSession = SessionController.getSession();
 		Connect itemBrowseConnect = Connect.getConnection();
 		int saldo = itemBrowseSession.getUser().getBalance();
-		keranjangButtonImage = new Image("/media/basket.png");
+		cartButtonImage = new Image("/media/basket.png");
 		topUpButtonImage = new Image("/media/money.png");
-		keranjangButtonIV = new ImageView(keranjangButtonImage);
+		cartButtonIV = new ImageView(cartButtonImage);
 		topUpButtonIV = new ImageView(topUpButtonImage);
-		keranjangButtonIV.setFitWidth(50);
+		cartButtonIV.setFitWidth(50);
 		topUpButtonIV.setFitWidth(50);
-		keranjangButton.setGraphic(keranjangButtonIV);
+		cartButton.setGraphic(cartButtonIV);
 		topUpButton.setGraphic(topUpButtonIV);
 		
 		if (saldo <= 0) {
@@ -74,29 +72,29 @@ public class ItemBrowseController implements Initializable {
 		if (itemPageCount > 9)
 			itemPageCount = 9;
 		
-		itemList = new ArrayList<Item>();
-		itemDisplayList = new ArrayList<ItemDisplay>();
-		Item itemTMP;
 		ItemDisplay itemDisplayTMP;
 		
 		for (int i = 0; i < itemPageCount; i++) {
-			try {
-				itemPageRS.next();
-				itemTMP = new Item(itemPageRS);
-				itemDisplayTMP = new ItemDisplay(itemTMP);
-				itemList.add(itemTMP);
-				itemDisplayList.add(itemDisplayTMP);
-				itemGridPane.add(itemDisplayTMP.getVbox(), i/3, i%3);
-			}
-			catch (SQLException e) {
-				e.printStackTrace();
-			}
+			itemDisplayTMP = itemBrowseSession.getItemDisplayList().get(i);
+			itemGridPane.add(itemDisplayTMP.getVbox(), i/3, i%3);
 		}
 	}
 	
 	public void handleSaldo() {
 		try {
 			Parent registerSceneRoot = FXMLLoader.load(getClass().getResource("saldo.fxml"));
+			Stage stage = (Stage) itemGridPane.getScene().getWindow();
+			Scene registerScene = new Scene(registerSceneRoot);
+			stage.setScene(registerScene);
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void handleCart() {
+		try {
+			Parent registerSceneRoot = FXMLLoader.load(getClass().getResource("cart.fxml"));
 			Stage stage = (Stage) itemGridPane.getScene().getWindow();
 			Scene registerScene = new Scene(registerSceneRoot);
 			stage.setScene(registerScene);

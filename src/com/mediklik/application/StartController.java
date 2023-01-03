@@ -49,6 +49,7 @@ public class StartController implements Initializable {
 			}
 			
 			SessionController.getSession(new User(usernameRSet));
+			SessionController.loadCart();
 			try {
 				Parent itemBrowseSceneRoot = FXMLLoader.load(getClass().getResource("item_browse.fxml"));
 				Stage stage = (Stage) loginButton.getScene().getWindow();

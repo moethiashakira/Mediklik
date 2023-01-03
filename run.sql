@@ -79,3 +79,4 @@ insert into User values (0, "admin", "adminpassword", 1, 0);
 insert into User values (1, "dummy", "password", 1, 1000000);
 insert into Category values (0, "Uncategorized");
 insert into Item values (0, "Panacea", 125000, 0, 4.50, "pill.jpg");
+insert into Cart values (1, 0, 3);
