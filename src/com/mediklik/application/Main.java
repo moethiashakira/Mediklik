@@ -16,6 +16,7 @@ public class Main extends Application {
 		
 		stage.setScene(startScene);
 		stage.setTitle("Mediklik v1.0");
+		stage.setResizable(false);
 		stage.show();
 	}
 

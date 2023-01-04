@@ -59,7 +59,7 @@
                   </ScrollPane>
                   <HBox alignment="CENTER_LEFT" prefHeight="48.0" prefWidth="640.0">
                      <children>
-                        <Button fx:id="kembaliButton" mnemonicParsing="false" text="Kembali">
+                        <Button fx:id="kembaliButton" mnemonicParsing="false" onAction="#handleKembali" text="Kembali">
                            <HBox.margin>
                               <Insets left="10.0" />
                            </HBox.margin>

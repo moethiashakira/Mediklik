@@ -12,6 +12,7 @@ import com.mediklik.models.ItemDisplay;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -77,6 +78,7 @@ public class ItemBrowseController implements Initializable {
 		for (int i = 0; i < itemPageCount; i++) {
 			itemDisplayTMP = itemBrowseSession.getItemDisplayList().get(i);
 			itemGridPane.add(itemDisplayTMP.getVbox(), i/3, i%3);
+			GridPane.setMargin(itemDisplayTMP.getVbox(), new Insets(0, 0, 25, 0));
 		}
 	}
 	
