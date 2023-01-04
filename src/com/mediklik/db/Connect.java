@@ -4,7 +4,7 @@ import java.sql.*;
 import org.mariadb.jdbc.MariaDbDataSource;
 
 public class Connect {
-	private final static String DBURL = "jdbc:mariadb://localhost/mediklik";
+	private final static String DBURL = "jdbc:mariadb://localhost:3305/mediklik";
 	private final static String DBUSER = "root";
 	private final static String DBPASSWORD = "password";
 	private Connection conn;
