@@ -52,19 +52,19 @@
                     <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="517.0" prefWidth="623.0">
                            <children>
-                              <VBox fx:id="cartVbox" prefHeight="527.0" prefWidth="631.0" />
+                              <VBox fx:id="cartVbox" prefHeight="527.0" prefWidth="631.0" style="-fx-background-color: ABEBF5;" />
                            </children>
                         </AnchorPane>
                     </content>
                   </ScrollPane>
                   <HBox alignment="CENTER_LEFT" prefHeight="48.0" prefWidth="640.0">
                      <children>
-                        <Button mnemonicParsing="false" text="Kembali">
+                        <Button fx:id="kembaliButton" mnemonicParsing="false" text="Kembali">
                            <HBox.margin>
                               <Insets left="10.0" />
                            </HBox.margin>
                         </Button>
-                        <Button mnemonicParsing="false" text="Checkout">
+                        <Button fx:id="checkoutButton" mnemonicParsing="false" text="Checkout">
                            <HBox.margin>
                               <Insets left="10.0" />
                            </HBox.margin>

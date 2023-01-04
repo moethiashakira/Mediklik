@@ -1,5 +1,6 @@
 package com.mediklik.models;
 
+import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
@@ -38,6 +39,10 @@ public class ItemCartDisplay {
 		vbox.getChildren().add(nameLabel);
 		vbox.getChildren().add(priceLabel);
 		vbox.getChildren().add(spinner);
+		
+		HBox.setMargin(imageView, new Insets(0, 10, 0, 0));
+		VBox.setMargin(priceLabel, new Insets(10, 0, 0, 0));
+		VBox.setMargin(spinner, new Insets(10, 0, 0, 0));
 	}
 
 	public HBox getHbox() {
