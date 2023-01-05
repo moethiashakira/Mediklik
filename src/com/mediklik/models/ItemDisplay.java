@@ -16,6 +16,7 @@ public class ItemDisplay {
 	
 	public ItemDisplay(Item item) {
 		vbox = new VBox();
+		System.out.println(item.getItemImage());
 		image = new Image(item.getItemImage());
 		imageView = new ImageView(image);
 		imageView.setSmooth(true);
