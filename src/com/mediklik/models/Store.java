@@ -1,5 +1,7 @@
 package com.mediklik.models;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class Store {
@@ -7,10 +9,6 @@ public class Store {
 	private String storeName;
 	private double storeRating;
 	private ArrayList<ItemQuantity> inventory = new ArrayList<ItemQuantity>();
-	
-	public Store() {
-
-	}
 
 	public Store(int storeID, String storeName, double storeRating, ArrayList<ItemQuantity> inventory) {
 		super();
@@ -20,6 +18,17 @@ public class Store {
 		this.inventory = inventory;
 	}
 
+	public Store(ResultSet storeRow) {
+		try {
+			this.storeID = storeRow.getInt("StoreID");
+			this.storeName = storeRow.getString("StoreName");
+			this.storeRating = storeRow.getDouble("StoreRating");
+		}
+		catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public int getStoreID() {
 		return storeID;
 	}

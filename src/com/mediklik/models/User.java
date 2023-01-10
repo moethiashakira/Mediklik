@@ -10,7 +10,7 @@ public class User {
 	private String password;
 	private boolean isadmin;
 	private int balance;
-	private ArrayList<ItemQuantity> cart = new ArrayList<ItemQuantity>();
+	private ArrayList<ItemStoreQuantity> cart = new ArrayList<ItemStoreQuantity>();
 	
 	public User() {
 		// TODO Auto-generated constructor stub
@@ -78,11 +78,11 @@ public class User {
 		this.balance = balance;
 	}
 
-	public ArrayList<ItemQuantity> getCart() {
+	public ArrayList<ItemStoreQuantity> getCart() {
 		return cart;
 	}
 
-	public void setCart(ArrayList<ItemQuantity> cart) {
+	public void setCart(ArrayList<ItemStoreQuantity> cart) {
 		this.cart = cart;
 	}
 }

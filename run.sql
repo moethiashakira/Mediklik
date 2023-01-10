@@ -28,14 +28,6 @@ primary key (ItemID),
 foreign key (CategoryID) references Category(CategoryID)
 );
 
-create table Cart(
-UserID integer not null,
-ItemID integer not null,
-CartQuantity integer not null,
-foreign key (UserID) references User(UserID),
-foreign key (ItemID) references Item(ItemID)
-);
-
 create table Store(
 StoreID integer not null,
 StoreName varchar(32) not null,
@@ -43,11 +35,20 @@ StoreRating double,
 primary key (StoreID)
 );
 
+create table Cart(
+UserID integer not null,
+ItemID integer not null,
+CartQuantity integer not null,
+StoreID integer not null,
+foreign key (UserID) references User(UserID),
+foreign key (ItemID) references Item(ItemID),
+foreign key (StoreID) references Store(StoreID)
+);
+
 create table Inventory(
 StoreID integer not null,
 ItemID integer not null,
 InventoryQuantity integer not null,
-primary key (StoreID),
 foreign key (StoreID) references Store(StoreID),
 foreign key (ItemID) references Item(ItemID)
 );
@@ -81,6 +82,9 @@ foreign key(ItemID) references Item(ItemID)
 #User account
 insert into User values (0, "admin", "adminpassword", 1, 0);
 insert into User values (1, "dummy", "password", 1, 1000000);
+
+#Dummy store
+insert into Store values(0, "Umbrella", 5.0);
 
 #Categories
 insert into Category values (0, "Uncategorized");
@@ -151,6 +155,32 @@ insert into Item values (23, "Hansaplast", 7600, 5, 4.50, "hansaplast.png", "HAN
 Indikasi Umum");
 insert into Item values (24, "Betadine", 6900, 5, 4.50, "betadine.png", "Betadine sol  merupakan larutan untuk membersihkan dan mengobati luka, juga sebagai desinfektan pada luka terbuka.");
 
-insert into Cart values (1, 0, 3);
-insert into Cart values (1, 1, 4);
-insert into Cart values (1, 2, 5);
+insert into Cart values (1, 0, 3, 0);
+insert into Cart values (1, 1, 4, 0);
+insert into Cart values (1, 2, 5, 0);
+
+insert into Inventory values(0, 0, 100);
+insert into Inventory values(0, 1, 100);
+insert into Inventory values(0, 2, 100);
+insert into Inventory values(0, 3, 100);
+insert into Inventory values(0, 4, 100);
+insert into Inventory values(0, 5, 100);
+insert into Inventory values(0, 6, 100);
+insert into Inventory values(0, 7, 100);
+insert into Inventory values(0, 8, 100);
+insert into Inventory values(0, 9, 100);
+insert into Inventory values(0, 10, 100);
+insert into Inventory values(0, 11, 100);
+insert into Inventory values(0, 12, 100);
+insert into Inventory values(0, 13, 100);
+insert into Inventory values(0, 14, 100);
+insert into Inventory values(0, 15, 100);
+insert into Inventory values(0, 16, 100);
+insert into Inventory values(0, 17, 100);
+insert into Inventory values(0, 18, 100);
+insert into Inventory values(0, 19, 100);
+insert into Inventory values(0, 20, 100);
+insert into Inventory values(0, 21, 100);
+insert into Inventory values(0, 22, 100);
+insert into Inventory values(0, 23, 100);
+insert into Inventory values(0, 24, 100);

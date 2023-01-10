@@ -64,7 +64,7 @@
                               <Insets left="10.0" />
                            </HBox.margin>
                         </Button>
-                        <Button fx:id="checkoutButton" mnemonicParsing="false" text="Checkout">
+                        <Button fx:id="checkoutButton" mnemonicParsing="false" onAction="#handleCheckout" text="Checkout">
                            <HBox.margin>
                               <Insets left="10.0" />
                            </HBox.margin>

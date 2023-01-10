@@ -10,6 +10,8 @@ import com.mediklik.models.Item;
 import com.mediklik.models.ItemCartDisplay;
 import com.mediklik.models.ItemDisplay;
 import com.mediklik.models.ItemQuantity;
+import com.mediklik.models.ItemStoreQuantity;
+import com.mediklik.models.Store;
 import com.mediklik.models.User;
 
 public class SessionController {
@@ -17,6 +19,7 @@ public class SessionController {
 	private static ArrayList<Item> itemList = new ArrayList<Item>();
 	private static ArrayList<ItemDisplay> itemDisplayList = new ArrayList<ItemDisplay>();
 	private static ArrayList<ItemCartDisplay> itemCartDisplayList = new ArrayList<ItemCartDisplay>();
+	private static ArrayList<Store> storeList = new ArrayList<Store>();
 	private static User user;
 	
 	private SessionController() {
@@ -45,7 +48,7 @@ public class SessionController {
 		Connect sessionConnect = Connect.getConnection();
 		itemList.clear();
 		itemDisplayList.clear();
-		ResultSet itemRS = sessionConnect.query("select * from item");
+		ResultSet itemRS = sessionConnect.query("select * from Item");
 		Item itemTMP;
 		try {
 			while (itemRS.next()) {
@@ -59,23 +62,53 @@ public class SessionController {
 		}
 	}
 
+	public static void loadStoreList() {
+		Connect sessionConnect = Connect.getConnection();
+		storeList.clear();
+		ResultSet itemRS = sessionConnect.query("select * from Store");
+		Store storeTMP;
+		Item itemTMP;
+		try {
+			while (itemRS.next()) {
+				storeTMP = new Store(itemRS);
+				storeList.add(storeTMP);
+				
+				PreparedStatement inventoryPS = sessionConnect.prepare("select * from Inventory where StoreID=?");
+				inventoryPS.setInt(1, storeTMP.getStoreID());
+				ResultSet inventoryRS = inventoryPS.executeQuery();
+				
+				while (inventoryRS.next()) {
+					int currentItemID = inventoryRS.getInt("ItemID");
+					itemTMP = itemList.stream().filter(item -> item.getItemID() == currentItemID).findAny().orElse(null);
+					storeTMP.getInventory().add(new ItemQuantity(itemTMP, inventoryRS.getInt("InventoryQuantity")));
+				}
+			}
+		}
+		catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public static void loadCart() {
 		Connect sessionConnect = Connect.getConnection();
 		user.getCart().clear();
 		itemCartDisplayList.clear();
 		PreparedStatement cartPS = sessionConnect.prepare("select * from cart where UserID=?");
 		Item itemTMP;
-		ItemQuantity itemQuantityTMP;
+		Store storeTMP;
+		ItemStoreQuantity itemStoreQuantityTMP;
 		
 		try {
 			cartPS.setInt(1, user.getUserID());
 			ResultSet cartRS = cartPS.executeQuery();
 			while (cartRS.next()) {
 				int currentItemID = cartRS.getInt("ItemID");
+				int currentStoreID = cartRS.getInt("StoreID");
 				itemTMP = itemList.stream().filter(item -> item.getItemID() == currentItemID).findAny().orElse(null);
-				itemQuantityTMP = new ItemQuantity(itemTMP, cartRS.getInt("CartQuantity"));
-				user.getCart().add(itemQuantityTMP);
-				itemCartDisplayList.add(new ItemCartDisplay(itemQuantityTMP));
+				storeTMP = storeList.stream().filter(store -> store.getStoreID() == currentStoreID).findAny().orElse(null);
+				itemStoreQuantityTMP = new ItemStoreQuantity(itemTMP, cartRS.getInt("CartQuantity"), storeTMP);
+				user.getCart().add(itemStoreQuantityTMP);
+				itemCartDisplayList.add(new ItemCartDisplay(itemStoreQuantityTMP));
 			}
 		}
 		catch (SQLException e) {
@@ -97,5 +130,9 @@ public class SessionController {
 
 	public ArrayList<ItemDisplay> getItemDisplayList() {
 		return itemDisplayList;
+	}
+	
+	public ArrayList<Store> getStoreList() {
+		return storeList;
 	}
 }

@@ -10,6 +10,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 public class ItemCartDisplay {
+	private Item item;
+	private int quantity;
 	private HBox hbox;
 	private VBox vbox;
 	private Image image;
@@ -20,8 +22,8 @@ public class ItemCartDisplay {
 	private SpinnerValueFactory<Integer> valueFactory;
 	
 	public ItemCartDisplay(ItemQuantity itemQuantity) {
-		Item item = itemQuantity.getItem();
-		int quantity = itemQuantity.getQuantity();
+		item = itemQuantity.getItem();
+		quantity = itemQuantity.getQuantity();
 		hbox = new HBox();
 		vbox = new VBox();
 		image = new Image(item.getItemImage());
@@ -47,5 +49,13 @@ public class ItemCartDisplay {
 
 	public HBox getHbox() {
 		return hbox;
+	}
+
+	public Item getItem() {
+		return item;
+	}
+	
+	public int getQuantity() {
+		return quantity;
 	}
 }

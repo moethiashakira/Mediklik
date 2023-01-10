@@ -5,8 +5,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: ABEBF5;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: ABEBF5;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mediklik.application.CheckoutController">
    <children>
       <Label layoutX="79.0" layoutY="47.0" prefHeight="32.0" prefWidth="63.0" text="Total:">
          <font>
@@ -18,7 +17,7 @@
             <Font size="24.0" />
          </font>
       </Label>
-      <Button fx:id="konfirmasiButton" layoutX="488.0" layoutY="175.0" mnemonicParsing="false" text="Konfirmasi" />
+      <Button fx:id="konfirmasiButton" layoutX="488.0" layoutY="175.0" mnemonicParsing="false" onAction="#handleCheckout" text="Konfirmasi" />
       <Label layoutX="79.0" layoutY="92.0" prefHeight="35.0" prefWidth="94.0" text="Saldo:">
          <font>
             <Font size="24.0" />
@@ -29,6 +28,6 @@
             <Font size="24.0" />
          </font>
       </Label>
-      <Button fx:id="kembaliButton" layoutX="418.0" layoutY="175.0" mnemonicParsing="false" text="Kembali" />
+      <Button fx:id="kembaliButton" layoutX="418.0" layoutY="175.0" mnemonicParsing="false" onAction="#handleKembali" text="Kembali" />
    </children>
 </AnchorPane>

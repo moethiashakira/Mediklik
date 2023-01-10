@@ -81,4 +81,12 @@ public class Item {
 	public void setItemImage(String itemImage) {
 		this.itemImage = itemImage;
 	}
+	public Item() {
+		// TODO Auto-generated constructor stub
+	}
+
+	@Override
+	public String toString() {
+		return itemName;
+	}
 }
