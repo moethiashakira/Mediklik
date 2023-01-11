@@ -1,9 +1,12 @@
 package com.mediklik.application;
 
 import java.net.URL;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+import com.mediklik.db.Connect;
 import com.mediklik.models.ItemCartDisplay;
 import com.mediklik.models.ItemQuantity;
 import com.mediklik.models.ItemStoreQuantity;
@@ -54,6 +57,7 @@ public class CheckoutController implements Initializable {
 	
 	public void handleCheckout() {
 		SessionController checkoutSession = SessionController.getSession();
+		Connect checkoutConnect = Connect.getConnection();
 		Alert checkoutAlert = new Alert(Alert.AlertType.ERROR);
 		int userBalance = checkoutSession.getUser().getBalance();
 		if (total > userBalance) {
@@ -76,6 +80,15 @@ public class CheckoutController implements Initializable {
 		
 		cart.clear();
 		cartDisplay.clear();
+		
+		try {
+			PreparedStatement cartUpdate = checkoutConnect.prepare("delete from Cart where UserID=?");
+			cartUpdate.setInt(1, checkoutSession.getUser().getUserID());
+			cartUpdate.executeUpdate();
+		}
+		catch (SQLException e) {
+			e.printStackTrace();
+		}
 		
 		checkoutAlert.setAlertType(Alert.AlertType.CONFIRMATION);
 		checkoutAlert.setHeaderText("Success");
