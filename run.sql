@@ -85,6 +85,7 @@ insert into User values (1, "dummy", "password", 1, 1000000);
 
 #Dummy store
 insert into Store values(0, "Umbrella", 5.0);
+insert into Store values(1, "Enilke", 5.0);
 
 #Categories
 insert into Category values (0, "Uncategorized");
@@ -160,6 +161,7 @@ insert into Cart values (1, 1, 4, 0);
 insert into Cart values (1, 2, 5, 0);
 
 insert into Inventory values(0, 0, 100);
+insert into Inventory values(1, 0, 100);
 insert into Inventory values(0, 1, 100);
 insert into Inventory values(0, 2, 100);
 insert into Inventory values(0, 3, 100);

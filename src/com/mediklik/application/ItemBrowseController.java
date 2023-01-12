@@ -2,7 +2,6 @@ package com.mediklik.application;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import com.mediklik.db.Connect;
@@ -60,7 +59,6 @@ public class ItemBrowseController implements Initializable {
 		
 		
 		ResultSet itemPageCountRS = itemBrowseConnect.query("select count(ItemID) from Item");
-		ResultSet itemPageRS = itemBrowseConnect.query("select * from item limit 9");
 		int itemPageCount = 0;
 		try {
 			itemPageCountRS.next();
