@@ -10,14 +10,16 @@ public class Item {
 	private int categoryID;
 	private double itemRating;
 	private String itemImage;
+	private String itemDesc;
 		
-	public Item(int itemID, String itemName, int itemPrice, int categoryID, double itemRating, String itemImage) {
+	public Item(int itemID, String itemName, int itemPrice, int categoryID, double itemRating, String itemImage, String itemDesc) {
 		this.itemID = itemID;
 		this.itemName = itemName;
 		this.itemPrice = itemPrice;
 		this.categoryID = categoryID;
 		this.itemRating = itemRating;
 		this.itemImage = "/media/" + itemImage;
+		this.itemDesc = itemDesc;
 	}
 	
 	public Item(ResultSet itemRow) {
@@ -28,6 +30,7 @@ public class Item {
 			this.categoryID = itemRow.getInt("CategoryID");
 			this.itemRating = itemRow.getDouble("ItemRating");
 			this.itemImage = "/media/" + itemRow.getString("ItemImage");
+			this.itemDesc = itemRow.getString("ItemDescription");
 		}
 		catch (SQLException e) {
 			e.printStackTrace();
@@ -81,8 +84,13 @@ public class Item {
 	public void setItemImage(String itemImage) {
 		this.itemImage = itemImage;
 	}
-	public Item() {
-		// TODO Auto-generated constructor stub
+	
+	public String getItemDesc() {
+		return itemDesc;
+	}
+
+	public void setItemDesc(String itemDesc) {
+		this.itemDesc = itemDesc;
 	}
 
 	@Override
