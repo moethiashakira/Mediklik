@@ -58,4 +58,8 @@ public class ItemCartDisplay {
 	public int getQuantity() {
 		return quantity;
 	}
+
+	public SpinnerValueFactory<Integer> getValueFactory() {
+		return valueFactory;
+	}
 }

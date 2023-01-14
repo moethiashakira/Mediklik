@@ -46,9 +46,9 @@ public class RegisterController implements Initializable  {
 		Connect userConnect = Connect.getConnection();
 		PreparedStatement usernamePStatement = userConnect.prepare("insert into user values(?, ?, ?, ?, ?)");
 		try {
-			ResultSet currentUserIDRS = userConnect.query("select UserID from CurrentID");
+			ResultSet currentUserIDRS = userConnect.query("select MAX(UserID) from User");
 			currentUserIDRS.next();
-			int currentUserID = currentUserIDRS.getInt("UserID");
+			int currentUserID = currentUserIDRS.getInt("max(userid)");
 			usernamePStatement.setInt(1, ++currentUserID);
 			usernamePStatement.setString(2, userName);
 			usernamePStatement.setString(3, password);

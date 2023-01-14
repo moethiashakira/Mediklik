@@ -9,6 +9,7 @@ import java.util.ResourceBundle;
 
 import com.mediklik.db.Connect;
 import com.mediklik.models.Item;
+import com.mediklik.models.ItemCartDisplay;
 import com.mediklik.models.ItemStoreQuantity;
 import com.mediklik.models.ItemViewData;
 import com.mediklik.models.Store;
@@ -78,20 +79,52 @@ public class ItemViewController implements Initializable {
 		SessionController itemViewSession = SessionController.getSession();
 		String currentStore = storeComboBox.getValue();
 		ArrayList<ItemStoreQuantity> userCart = itemViewSession.getUser().getCart();
+		ArrayList<ItemCartDisplay> userCartDisplayList = itemViewSession.getItemCartDisplayList();
 		ItemStoreQuantity userCartItem;
-		Store itemStore = itemViewSession.getStoreList().stream().filter(store -> store.getStoreName() == currentStore).findAny().orElse(null);
+		Connect itemViewConnect = Connect.getConnection();
+		ItemCartDisplay userCartDisplay;
+		Store itemStore = itemViewSession.getStoreList().stream().filter(store -> store.getStoreName().equals(currentStore)).findAny().orElse(null);
+		
 		int quantity = quantitySpinner.getValue();
 		
+		ItemStoreQuantity newUserCartItem;
 		if ((userCartItem = userCart.stream().filter(itemStoreQuantity -> itemStoreQuantity.getItem() == item).findAny().orElse(null)) == null) {
-			userCart.add(new ItemStoreQuantity(item, quantity, itemStore));
+			newUserCartItem = new ItemStoreQuantity(item, quantity, itemStore);
+			userCart.add(newUserCartItem);
+			userCartDisplayList.add(new ItemCartDisplay(newUserCartItem));
+			
+			try {
+				PreparedStatement itemViewPS = itemViewConnect.prepare("insert into Cart values (?, ?, ?, ?)");
+				itemViewPS.setInt(1, itemViewSession.getUser().getUserID());
+				itemViewPS.setInt(2, item.getItemID());
+				itemViewPS.setInt(3, quantity);
+				itemViewPS.setInt(4, itemStore.getStoreID());
+				itemViewPS.executeUpdate();
+			}
+			catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 		else {
 			userCartItem.setQuantity(quantity + userCartItem.getQuantity());
+			userCartDisplay = userCartDisplayList.stream().filter(itemCartDisplay -> itemCartDisplay.getItem() == item).findAny().orElse(null);
+			userCartDisplay.getValueFactory().setValue(quantity + userCartItem.getQuantity());
+			
+			try {
+				PreparedStatement itemViewPS = itemViewConnect.prepare("update Cart set CartQuantity=?, StoreID=? where UserID=? and ItemID=?");
+				itemViewPS.setInt(1, quantity);
+				itemViewPS.setInt(2, itemStore.getStoreID());
+				itemViewPS.setInt(3, itemViewSession.getUser().getUserID());
+				itemViewPS.setInt(4, item.getItemID());
+				itemViewPS.executeUpdate();
+			}
+			catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 		
-		
 		Alert itemViewAlert = new Alert(Alert.AlertType.CONFIRMATION);
-		itemViewAlert.setHeaderText("Success");
+		itemViewAlert.setHeaderText("Success!");
 		itemViewAlert.setContentText("Items added to cart");
 		itemViewAlert.showAndWait();
 	}
