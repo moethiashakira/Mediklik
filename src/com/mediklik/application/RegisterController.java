@@ -24,6 +24,8 @@ public class RegisterController implements Initializable  {
 	@FXML
 	private Button registerButton;
 	@FXML
+	private Button kembaliButton;
+	@FXML
 	private TextField usernameTField;
 	@FXML
 	private PasswordField passwordPField;
@@ -71,6 +73,18 @@ public class RegisterController implements Initializable  {
 			}
 		}
 		catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void handleKembali() {
+		try {
+			Parent startScceneRoot = FXMLLoader.load(getClass().getResource("start.fxml"));
+			Stage stage = (Stage) registerButton.getScene().getWindow();
+			Scene startScene = new Scene(startScceneRoot);
+			stage.setScene(startScene);
+		}
+		catch (Exception e) {
 			e.printStackTrace();
 		}
 	}

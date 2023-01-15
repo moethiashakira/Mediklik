@@ -2,10 +2,12 @@ package com.mediklik.application;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import com.mediklik.db.Connect;
 import com.mediklik.models.Item;
+import com.mediklik.models.ItemBrowseData;
 import com.mediklik.models.ItemDisplay;
 
 import javafx.fxml.FXML;
@@ -30,6 +32,10 @@ public class ItemBrowseController implements Initializable {
 	private Button cartButton;
 	@FXML
 	private Button topUpButton;
+	@FXML
+	private Button prevButton;	
+	@FXML
+	private Button nextButton;
 	
 	private Image cartButtonImage;
 	private Image topUpButtonImage;
@@ -57,26 +63,27 @@ public class ItemBrowseController implements Initializable {
 			saldoLabel.setText("Rp" + Integer.toString(saldo));
 		}
 		
-		
-		ResultSet itemPageCountRS = itemBrowseConnect.query("select count(ItemID) from Item");
-		int itemPageCount = 0;
-		try {
-			itemPageCountRS.next();
-			itemPageCount = itemPageCountRS.getInt(1);
-		}
-		catch (SQLException e) {
-			e.printStackTrace();
-		}
-		
-		if (itemPageCount > 9)
+		int itemPageCount = itemBrowseSession.getItemList().size();
+
+		if (itemPageCount - ItemBrowseData.getPage() * 9 > 9)
 			itemPageCount = 9;
+		else
+			itemPageCount = itemPageCount - ItemBrowseData.getPage() * 9;
 		
 		ItemDisplay itemDisplayTMP;
 		
 		for (int i = 0; i < itemPageCount; i++) {
-			itemDisplayTMP = itemBrowseSession.getItemDisplayList().get(i);
+			itemDisplayTMP = itemBrowseSession.getItemDisplayList().get(i + ItemBrowseData.getPage() * 9);
 			itemGridPane.add(itemDisplayTMP.getVbox(), i/3, i%3);
 			GridPane.setMargin(itemDisplayTMP.getVbox(), new Insets(0, 0, 25, 0));
+		}
+		
+		if (ItemBrowseData.getPage() == 0) {
+			prevButton.setDisable(true);
+		}
+		
+		if (ItemBrowseData.getPage() == ItemBrowseData.getMax()) {
+			nextButton.setDisable(true);
 		}
 	}
 	
@@ -101,6 +108,76 @@ public class ItemBrowseController implements Initializable {
 		}
 		catch (Exception e) {
 			e.printStackTrace();
+		}
+	}
+	
+	public void handlePrev() {
+		itemGridPane.getChildren().clear();
+		ItemBrowseData.decPage();
+		SessionController itemBrowseSession = SessionController.getSession();
+		
+		int itemPageCount = itemBrowseSession.getItemList().size();
+
+		if (itemPageCount - ItemBrowseData.getPage() * 9 > 9)
+			itemPageCount = 9;
+		else
+			itemPageCount = itemPageCount - ItemBrowseData.getPage() * 9;
+		
+		ItemDisplay itemDisplayTMP;
+		
+		for (int i = 0; i < itemPageCount; i++) {
+			itemDisplayTMP = itemBrowseSession.getItemDisplayList().get(i + ItemBrowseData.getPage() * 9);
+			itemGridPane.add(itemDisplayTMP.getVbox(), i/3, i%3);
+			GridPane.setMargin(itemDisplayTMP.getVbox(), new Insets(0, 0, 25, 0));
+		}
+		
+		if (ItemBrowseData.getPage() == 0) {
+			prevButton.setDisable(true);
+		}
+		else {
+			prevButton.setDisable(false);
+		}
+		
+		if (ItemBrowseData.getPage() == ItemBrowseData.getMax()) {
+			nextButton.setDisable(true);
+		}
+		else {
+			nextButton.setDisable(false);
+		}
+	}
+	
+	public void handleNext() {
+		itemGridPane.getChildren().clear();
+		ItemBrowseData.incPage();
+		SessionController itemBrowseSession = SessionController.getSession();
+		
+		int itemPageCount = itemBrowseSession.getItemList().size();
+
+		if (itemPageCount - ItemBrowseData.getPage() * 9 > 9)
+			itemPageCount = 9;
+		else
+			itemPageCount = itemPageCount - ItemBrowseData.getPage() * 9;
+		
+		ItemDisplay itemDisplayTMP;
+		
+		for (int i = 0; i < itemPageCount; i++) {
+			itemDisplayTMP = itemBrowseSession.getItemDisplayList().get(i + ItemBrowseData.getPage() * 9);
+			itemGridPane.add(itemDisplayTMP.getVbox(), i/3, i%3);
+			GridPane.setMargin(itemDisplayTMP.getVbox(), new Insets(0, 0, 25, 0));
+		}
+		
+		if (ItemBrowseData.getPage() == 0) {
+			prevButton.setDisable(true);
+		}
+		else {
+			prevButton.setDisable(false);
+		}
+		
+		if (ItemBrowseData.getPage() == ItemBrowseData.getMax()) {
+			nextButton.setDisable(true);
+		}
+		else {
+			nextButton.setDisable(false);
 		}
 	}
 }

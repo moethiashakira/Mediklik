@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 import com.mediklik.db.Connect;
 import com.mediklik.models.Item;
+import com.mediklik.models.ItemBrowseData;
 import com.mediklik.models.ItemCartDisplay;
 import com.mediklik.models.ItemDisplay;
 import com.mediklik.models.ItemQuantity;
@@ -60,6 +61,9 @@ public class SessionController {
 		catch (SQLException e) {
 			e.printStackTrace();
 		}
+		
+		int itemListSize = itemList.size();
+		ItemBrowseData.setMax((itemListSize / 9) + ((itemListSize % 9 > 0) ? 1 : 0) - 1);
 	}
 
 	public static void loadStoreList() {
