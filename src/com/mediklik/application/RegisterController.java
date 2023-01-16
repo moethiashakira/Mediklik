@@ -91,12 +91,12 @@ public class RegisterController implements Initializable  {
 	
 	private boolean usernameValidation (String username) {
 		//TODO
-		return username.length() <= 32 && !username.contains(" ");
+		return username.length() <= 32 && !username.contains(" ") && !username.equals("");
 	}
 	
 	private boolean passwordValidation (String password) {
 		//TODO
-		return password.length() <= 64;
+		return password.length() <= 64 && !password.equals("");
 	}
 
 	@Override

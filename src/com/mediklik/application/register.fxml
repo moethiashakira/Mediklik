@@ -66,12 +66,12 @@
                   </VBox>
                   <VBox alignment="CENTER" prefHeight="350.0" prefWidth="279.0">
                      <children>
-                        <TextField fx:id="usernameTField" promptText="Username">
+                        <TextField fx:id="usernameTField" onAction="#handleRegister" promptText="Username">
                            <VBox.margin>
                               <Insets bottom="10.0" />
                            </VBox.margin>
                         </TextField>
-                        <PasswordField fx:id="passwordPField" promptText="Password">
+                        <PasswordField fx:id="passwordPField" onAction="#handleRegister" promptText="Password">
                            <VBox.margin>
                               <Insets bottom="25.0" />
                            </VBox.margin>
