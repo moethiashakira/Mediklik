@@ -1,5 +1,5 @@
 # Mediklik
-![Tampilan Awal](doc/img/mediklik_1.jpg)
+![Tampilan Awal](doc/imgs/mediklik_1.jpg)
 ## Tentang Mediklik
 Mediklik adalah aplikasi e-commerce open-source untuk segala kebutuhan obat Anda. 
 
