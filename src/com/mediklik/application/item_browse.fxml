@@ -42,7 +42,6 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
 <VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mediklik.application.ItemBrowseController">
@@ -93,37 +92,42 @@
                         <Insets />
                      </VBox.margin>
                   </HBox>
-                  <HBox prefHeight="102.0" prefWidth="642.0">
-                     <children>
-                        <Circle fill="#528286" radius="26.0" stroke="#528286" strokeType="INSIDE">
-                           <HBox.margin>
-                              <Insets left="30.0" top="8.0" />
-                           </HBox.margin>
-                        </Circle>
-                        <Circle fill="#528286" radius="26.0" stroke="#528286" strokeType="INSIDE">
-                           <HBox.margin>
-                              <Insets left="80.0" top="8.0" />
-                           </HBox.margin>
-                        </Circle>
-                        <Circle fill="#528286" radius="26.0" stroke="#528286" strokeType="INSIDE">
-                           <HBox.margin>
-                              <Insets left="80.0" top="8.0" />
-                           </HBox.margin>
-                        </Circle>
-                        <Circle fill="#528286" radius="26.0" stroke="#528286" strokeType="INSIDE">
-                           <HBox.margin>
-                              <Insets left="80.0" top="8.0" />
-                           </HBox.margin>
-                        </Circle>
-                        <Circle fill="#528286" radius="26.0" stroke="#528286" strokeType="INSIDE">
-                           <HBox.margin>
-                              <Insets left="80.0" top="8.0" />
-                           </HBox.margin>
-                        </Circle>
-                     </children>
+                  <HBox alignment="CENTER" prefHeight="102.0" prefWidth="642.0">
                      <VBox.margin>
                         <Insets bottom="12.0" />
-                     </VBox.margin></HBox>
+                     </VBox.margin>
+                     <children>
+                        <Button fx:id="allButton" mnemonicParsing="false" onAction="#handleAllButton" text="Semua">
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </Button>
+                        <Button fx:id="syrupButton" mnemonicParsing="false" onAction="#handleSyrupButton" text="Sirup">
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </Button>
+                        <Button fx:id="tabletButton" mnemonicParsing="false" onAction="#handleTabletButton" text="Tablet">
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </Button>
+                        <Button fx:id="capsuleButton" mnemonicParsing="false" onAction="#handleCapsuleButton" text="Kapsul">
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </Button>
+                        <Button fx:id="olesButton" mnemonicParsing="false" onAction="#handleOlesButton" text="Oles">
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </Button>
+                        <Button fx:id="otherButton" mnemonicParsing="false" onAction="#handleOtherButton" text="Lain">
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </Button>
+                     </children></HBox>
                   <ScrollPane prefHeight="311.0" prefWidth="641.0" style="-fx-background-color: ABEBF5;">
                      <content>
                         <VBox prefHeight="657.0" prefWidth="631.0" style="-fx-background-color: ABEBF5;">
