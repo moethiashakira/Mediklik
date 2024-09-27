@@ -3,6 +3,9 @@
 ## Tentang Mediklik
 Mediklik adalah aplikasi e-commerce open-source untuk segala kebutuhan obat Anda. 
 
+## Figma
+Link = https://www.figma.com/proto/06YpdfD5tjPFn7ccZBoix2/Mediklik?node-id=178-598&scaling=contain&page-id=0%3A1&starting-point-node-id=178%3A598&t=knvZNfrwcjkcbnsw-1
+
 ### Fitur
 * Penyaringan berdasarkan kategori
 * User inteface yang sederhana
